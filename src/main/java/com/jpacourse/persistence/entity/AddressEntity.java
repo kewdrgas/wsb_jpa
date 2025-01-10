@@ -18,10 +18,10 @@ public class AddressEntity {
 
 	private String postalCode;
 
-	@OneToOne(mappedBy = "address")  // This is the other side of the relationship
+	@OneToOne(mappedBy = "address")
 	private DoctorEntity doctor;
 
-	@OneToOne(mappedBy = "address")  // This is the other side of the relationship
+	@OneToOne(mappedBy = "address")
 	private PatientEntity patient;
 
 	public Long getId() {

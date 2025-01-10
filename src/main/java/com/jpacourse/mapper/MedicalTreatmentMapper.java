@@ -12,7 +12,6 @@ public final class MedicalTreatmentMapper {
         }
         MedicalTreatmentTO medicalTreatmentTO = new MedicalTreatmentTO();
         medicalTreatmentTO.setId(medicalTreatmentEntity.getId());
-        medicalTreatmentTO.setVisitId(medicalTreatmentEntity.getVisit().getId());
         medicalTreatmentTO.setDescription(medicalTreatmentEntity.getDescription());
         medicalTreatmentTO.setType(medicalTreatmentEntity.getType());
         return medicalTreatmentTO;
@@ -23,8 +22,7 @@ public final class MedicalTreatmentMapper {
             return null;
         }
         MedicalTreatmentEntity medicalTreatmentEntity = new MedicalTreatmentEntity();
-        // Assuming you can retrieve the VisitEntity by its ID
-        medicalTreatmentEntity.setVisit(new VisitEntity());  // Set the actual VisitEntity here
+        medicalTreatmentEntity.setVisit(new VisitEntity());
         medicalTreatmentEntity.setDescription(medicalTreatmentTO.getDescription());
         medicalTreatmentEntity.setType(medicalTreatmentTO.getType());
         return medicalTreatmentEntity;

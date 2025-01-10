@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @Transactional
 public class VisitServiceImpl implements VisitService {
@@ -36,5 +39,13 @@ public class VisitServiceImpl implements VisitService {
     @Override
     public void delete(Long id) {
         visitDao.delete(id);
+    }
+
+    @Override
+    public List<VisitTO> findVisitsByPatientId(Long patientId) {
+        List<VisitEntity> visits = visitDao.getVisitsByPatientId(patientId);
+        return visits.stream()
+                .map(VisitMapper::mapToTO)
+                .collect(Collectors.toList());
     }
 }

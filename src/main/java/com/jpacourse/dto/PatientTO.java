@@ -2,26 +2,20 @@ package com.jpacourse.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 public class PatientTO implements Serializable {
 
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private String telephoneNumber;
-
     private String email;
-
     private String patientNumber;
-
     private LocalDate dateOfBirth;
-
     private AddressTO address;
-
-    // Getters and Setters
+    private String additionalInfo;
+    private List<VisitTO> visits;
 
     public Long getId() {
         return id;
@@ -85,5 +79,21 @@ public class PatientTO implements Serializable {
 
     public void setAddress(AddressTO address) {
         this.address = address;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public List<VisitTO> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(List<VisitTO> visits) {
+        this.visits = visits;
     }
 }

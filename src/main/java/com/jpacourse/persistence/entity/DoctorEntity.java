@@ -3,6 +3,7 @@ package com.jpacourse.persistence.entity;
 import com.jpacourse.persistence.enums.Specialization;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -36,7 +37,7 @@ public class DoctorEntity {
 	private AddressEntity address;
 
 	@OneToMany(mappedBy = "doctor", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-	private List<VisitEntity> visits;
+	private List<VisitEntity> visits = new ArrayList<>();
 
 	public Long getId() {
 		return id;

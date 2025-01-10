@@ -2,14 +2,15 @@ package com.jpacourse.dto;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class VisitTO implements Serializable {
 
     private Long id;
-    private Long patientId;
-    private Long doctorId;
-    private LocalDateTime visitDate;  // Time of the visit
-    private String description;  // Detailed description of the visit
+    private String doctorName;
+    private LocalDateTime visitDate;
+    private String description;
+    private List<MedicalTreatmentTO> treatments;
 
     public Long getId() {
         return id;
@@ -19,20 +20,12 @@ public class VisitTO implements Serializable {
         this.id = id;
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public String getDoctorName() {
+        return doctorName;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
-    }
-
-    public Long getDoctorId() {
-        return doctorId;
-    }
-
-    public void setDoctorId(Long doctorId) {
-        this.doctorId = doctorId;
+    public void setDoctorName(String doctorName) {
+        this.doctorName = doctorName;
     }
 
     public LocalDateTime getVisitDate() {
@@ -49,5 +42,13 @@ public class VisitTO implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<MedicalTreatmentTO> getTreatments() {
+        return treatments;
+    }
+
+    public void setTreatments(List<MedicalTreatmentTO> treatments) {
+        this.treatments = treatments;
     }
 }

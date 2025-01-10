@@ -2,6 +2,7 @@ package com.jpacourse.persistence.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "VISIT")
@@ -11,13 +12,14 @@ public class VisitEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "doctor_id", nullable = false)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private DoctorEntity doctor;
 
-	@ManyToOne
-	@JoinColumn(name = "patient_id", nullable = false)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private PatientEntity patient;
+
+	@OneToMany(mappedBy = "visit", cascade = CascadeType.ALL)
+	private List<MedicalTreatmentEntity> medicalTreatments;
 
 	@Column(nullable = false)
 	private LocalDateTime visitDate;
@@ -63,5 +65,13 @@ public class VisitEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<MedicalTreatmentEntity> getMedicalTreatments() {
+		return medicalTreatments;
+	}
+
+	public void setMedicalTreatments(List<MedicalTreatmentEntity> medicalTreatments) {
+		this.medicalTreatments = medicalTreatments;
 	}
 }

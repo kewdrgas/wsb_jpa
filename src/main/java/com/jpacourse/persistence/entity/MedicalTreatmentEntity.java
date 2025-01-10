@@ -12,7 +12,7 @@ public class MedicalTreatmentEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.REMOVE)  // Adding cascade for removal
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "visit_id", nullable = false)
 	private VisitEntity visit;
 

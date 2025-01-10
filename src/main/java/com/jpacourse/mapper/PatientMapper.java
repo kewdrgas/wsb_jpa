@@ -3,9 +3,11 @@ package com.jpacourse.mapper;
 import com.jpacourse.dto.PatientTO;
 import com.jpacourse.persistence.entity.PatientEntity;
 
-public final class PatientMapper {
+import java.util.stream.Collectors;
 
-    public static PatientTO mapToTO(final PatientEntity patientEntity) {
+public class PatientMapper {
+
+    public static PatientTO mapToTO(PatientEntity patientEntity) {
         if (patientEntity == null) {
             return null;
         }
@@ -18,12 +20,20 @@ public final class PatientMapper {
         patientTO.setEmail(patientEntity.getEmail());
         patientTO.setPatientNumber(patientEntity.getPatientNumber());
         patientTO.setDateOfBirth(patientEntity.getDateOfBirth());
-        patientTO.setAddress(AddressMapper.mapToTO(patientEntity.getAddress())); // Map Address
+        patientTO.setAddress(AddressMapper.mapToTO(patientEntity.getAddress()));
+        patientTO.setAdditionalInfo(patientEntity.getAdditionalInfo());
+
+        if (patientEntity.getVisits() != null) {
+            patientTO.setVisits(patientEntity.getVisits()
+                    .stream()
+                    .map(VisitMapper::mapToTO)
+                    .collect(Collectors.toList()));
+        }
 
         return patientTO;
     }
 
-    public static PatientEntity mapToEntity(final PatientTO patientTO) {
+    public static PatientEntity mapToEntity(PatientTO patientTO) {
         if (patientTO == null) {
             return null;
         }
@@ -36,7 +46,11 @@ public final class PatientMapper {
         patientEntity.setEmail(patientTO.getEmail());
         patientEntity.setPatientNumber(patientTO.getPatientNumber());
         patientEntity.setDateOfBirth(patientTO.getDateOfBirth());
-        patientEntity.setAddress(AddressMapper.mapToEntity(patientTO.getAddress())); // Map Address
+        patientEntity.setAdditionalInfo(patientTO.getAdditionalInfo());
+
+        if (patientTO.getAddress() != null) {
+            patientEntity.setAddress(AddressMapper.mapToEntity(patientTO.getAddress()));
+        }
 
         return patientEntity;
     }
